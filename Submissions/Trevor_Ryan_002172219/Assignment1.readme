@@ -1,0 +1,218 @@
+Trevor Ryan
+Assignment 1 – INFO6205 Section 5
+
+Objective: Use ChatGPT or similar tools to create a new algorithmic problem based on a provided example problem. The aim is to create a non-trivial question that aligns with the essence and structure of the sample problem.
+
+Problem 1:
+My similar problem is as follows: 
+Problem Description: Arrange the following functions in increasing order of growth as n approaches infinity:
+•	2^n
+•	n^3
+•	log(n)
+•	n^(1/2)
+•	100n
+•	n*log(n)
+•	3^n
+•	n^(log(n))
+•	n^4
+•	10(n^2)-5n+1
+Solution: To generate this problem, I requested ChatGPT to create a similar problem to the one provided in the assignment PDF. I looked through the example question and validated that none of the functions used in my replica problem were identical to the example problem. I then used my knowledge of Big O notation, and the resources provided in class to validate the solution provided by ChatGPT. I also plotted the solution in MATLAB to verify that the provided solution was correct as well. The functions sorted in increasing order of growth for my example problem is as follows:
+
+1.	log(n) 
+2.	n^(1/2)
+3.	100n
+4.	n*log(n)
+5.	10(n^2)-5n+1
+6.	n^3
+7.	n^4
+8.	n^(log(n))
+9.	2^n
+10.	3^n
+
+The function with the least growth amongst the ten options is log(n). log(n) is logarithmic and is the lowest growing type of function amongst those provided. Next is n^(1/2), or sqrt(n). This function is the only remaining function to have a slope less than one – giving it the second least growth rate. The third function is 100n. This function is linear with a slope of 100. Fourth is n*log(n). This function is loglinear, and increases at a rate higher than a linear function as n approaches infinity. The fifth function is 10(n^2)-5(n)+1. This function is quadratic and is the next type of common function known in Big O notation growth rate. The sixth function contains n raised to the third power. This has a larger growth rate than a quadratic as n approaches infinity. The seventh function is also a polynomial, but is raised to the fourth power instead of the third – therefore having a larger growth rate. The eight function is n^(log(n)), which is the final polynomial amongst the list, but has the largest growth rate because as n approaches infinity, log(n) is larger than the previous values of 3 and 4. The ninth and tenth functions on the list are exponential. 2^n has less growth than 3^n because 3 is a larger number. There were no factorials given, which are the only type of common function that will have a growth rate larger than exponential.
+
+
+The source code used to generate these plots in MATLAB was:
+
+clc
+clear
+
+n = 0:100;
+
+f1 = log(n);
+f2 = n.^(0.5);
+f3 = 100*n;
+f4 = n.*log(n);
+f5 = 10*(n.^2)-(5*n)+1;
+f6 = n.^3;
+f7 = n.^4;
+f8 = n.^(log(n));
+f9 = 2.^n;
+f10 = 3.^n;
+
+
+figure(1)
+plot(n,f1,n,f2,n,f3,n,f4,n,f5,n,f6,n,f7,n,f8,n,f9,n,f10)
+axis([0 100 0 10000])
+legend('f1','f2','f3','f4','f5','f6','f7','f8','f9','f10')
+xlabel('n')
+set(gcf,"Color",[1 1 1])
+ylabel('f(n)')
+
+figure(2)
+plot(n,f1,n,f2,n,f3,n,f4,n,f5,n,f6,n,f7,n,f8,n,f9,n,f10)
+axis([0 100 0 10])
+legend('f1','f2','f3','f4','f5','f6','f7','f8','f9','f10')
+xlabel('n')
+set(gcf,"Color",[1 1 1])
+ylabel('f(n)')
+
+Reflection:  This problem allowed me to understand Big O notation and the different growth rates amongst common functions. Before this assignment, I had not had the opportunity to practice my skills with Big O notation, and this allowed me to take the videos that we watched in class, and put them into practice. When I was using ChatGPT I noticed that some of the results that it provided did not follow the core rules for increasing functions, so I made sure to correct the answer in my solution. ChatGPT was very useful in generating a new problem that I could use to make my replica question.
+
+Problem 2:
+My similar problem is as follows:
+Problem description: Assume that you have two functions f and g, both with an input of n. It can be assumed that f(n) is O(g(n)). For each of the following statements, decide whether it is true or false and provide a proof or counterexample.
+Statement 1: If f(n) = O(g(n), then g(n) = Ω(f(n)),
+Statement 2: If f(n) = Θ(g(n)), then g(n) = Θ(f(n)),
+Statement 3: If f(n) = O(g(n)), then g(n) -= O(f(n)).
+Solution: 
+Statement 1 is true. This is because if f(n) is Big O of g(n) then by definition, there are positive constants c1 and n0 such that when n>n0, c1*g(n)>=f(n)>=0. For g(n) = Ω(f(n)), there would have to be positive constants c2 and n1 such that when n>n1, g(n)>=c2*f(n)>=0. Knowing these two relationships by definition, we can divide both sides of the first inequality by c1 to get g(n) and 0 on both sides each definition. This will give us g(n)>=(1/c1)*f(n)>=0. If c2 = 1/c1, and n1 = n0, then the inequality g(n)>=c2*f(n)>=0 is true, therefore proving the statement.
+Statement 2 is also true. This is because if f(n) = Θ(g(n)), there are positive constants c1 and n1 such that for all n>n1, f(n)>=c1*g(n)>=0. For g(n) = O(f(n)), there must be positive constants c2 and n2 where n>n2 and c2*f(n)>=g(n)>=0. Because of this, g(n) = O(f(n)). Also, because f(n) is Big O of g(n) and g(n) is Big O of f(n), g(n) =  Θ(f(n)) is true.
+Statement 3 is false. This is because there are counterexamples where the specific instance is not true. For example, if f(n) = n and g(n) = n^4. f(n) is Big O of g(n), but because n^4 is growing faster than n at all instances, g(n) is not Big O of f(n) as well. Therefore it is false.
+Reflection: This problem gave me more opportunity to practice problems on Big O notation. This gave me a chance to prove the definition of Big O on three different examples.
+Problem 3:
+My similar problem is as follows:
+Problem description: There are m colleges and n high school students trying to attend the schools. Each school ranks each of the students that are applying based on their academic performance, personality skills, and standardized testing scores. Each student also ranks each college based on their personal interests. If there are more students applying for college than there are available spots, is there a way to find the best admission situation where each college is filled while no student or college has a reason to deviate from their matching pair.
+Solution:
+This is an example of the Gale-Shapley algorithm, also known as the stable marriage problem. To solve this dilemma a common Gale-Shapley solution should be used. The pseudocode for this approach can be seen below.
+While any school m has available spots (loop through schools)
+School m offers a spot to the top remaining student (s) based on their initial rankings.
+If student s is still free, then they accept the off (if statement)
+If student s is not free, then they consider the new offer. They will switch to the new school if it is higher on their preference list (if statement). They will remain at their original school if the new offer is not higher on their list.
+This algorithm will run until all of the colleges have filled their positions.
+Reflection: This problem is a standard example of the Gale-Shipley algorithm. This gave me the opportunity to practice one of the problems on my own. It reminded me of the discussion in class where we went through a stable marriage problem. During that example we went through each man and woman one by one to fully understand the process. Because of that practice, I knew the process necessary to complete a problem like this.
+Problem 4:
+My similar problem is as follows:
+Problem description: There are two algorithms, algorithm A and algorithm B. Both are considered for sorting a list of n integers. Algorithm A takes 2n^2 seconds to sort through the list, while algorithm B takes 100n*log2(n) seconds. Which algorithm is asymptotically faster? What is the crossover of n?
+Solution:
+Algorithm B is asymptotically faster than A. This means that eventually it grows larger, even if it is not larger at the beginning. The crossover point for the two algorithms can be found by setting the two functions equal to each other. The crossover point for this example is n = 100.
+Reflection: This problem gave me an opportunity to compare two algorithms and solve for the value where they are equal.
+Problem 5:
+My similar problem is as follows:
+A pyramid needs to be constructed using rectangular blocks. The pyramid consists of layers where the levels have one less block than the layer below it. If you have n blocks to build the pyramid, explain how to build it using the minimum number of blocks possible. 
+Solution:
+To solve this problem, the top layer of the pyramid should be build first, then the rest in descending order. This is to ensure that the minimum number of blocks are being used in the construction. If the top layer f(1) has one block f(1) = 1. Then each following layer will have one more block than the layer previous. f(2) will equal 2, f(3) will equal 3. If we are on the third layer of the pyramid, the total number of blocks will equal the amount on that floor plus the amount on all the previous layers. An expression for f(n) would be f(n) = n + (n-1) + (n-2)… + 1. This expression works if n is larger than 3. If n is 3, f(n) is 6. For n = 2, f(n) is 3. And if n =1, f(n) equals 1.
+Reflection:
+This problem gave me the opportunity to create theoretical equations based on a word problem. My approach to this problem was simpler than the example problem as pyramids have an easy way of determining the number of bricks in a floor below the current one.
+Problem 6:
+My similar problem is as follows:
+There are two algorithms, Algorithm A and Algorithm B where Algorithm A takes ln(n) seconds to sort a list of size n, while Algorithm B takes sqrt(2n) seconds to sort that same list. What is the crossover value of n, and which algorithm grows asymptotically faster.
+Solution:
+Logarithmic functions grow at a slower rate than sqrt(2n) as n approaches infinity. Because of this, Algorithm B is asymptotically faster. The crossover point of n for these two algorithms can be found when the two functions equal each other. That point does not exist while n>0. A plot to show that Algorithm B is asymptotically faster than Algorithm A is shown below.
+ 
+Source code:
+clc
+clear
+
+n = 1:1000;
+
+f1 = log(n);
+f2 = sqrt(2*n);
+
+figure
+plot(n,f1,n,f2)
+xlabel('n')
+legend('A','B')
+set(gcf,'Color',[1 1 1])
+
+Reflection:
+This problem gave me another opportunity to compare two functions and determine which one was asymptotically faster than the other.
+Problem 7:
+My similar problem is as follows:
+At a given school dance, there are an equal number of boys and girls. If each boy has a ranked preference of girls, and each girl has their ranked preference of boys. If in this situation, a boy B1 and a girl G1 are first on each of their preference lists. Also in this situation, there is a boy B2 and a girl G2 who are also first on their respective lists. Determine if the following statement is true.
+•	For every stable matching in this scenario, B1 and G1, and B2 and G2 must be part of the matching
+Solution:
+That statement is true. This is because each of the combinations has each other first on their preference lists. There cannot be any other combination where B1, B2, G1 and G2 are stable without them having each other. Basically the definition of stable matching says that this statement is true.
+Reflection: 
+This problem gave me another opportunity to practice a stable matching problem. This example shows a perfect scenario where two of the people have each other as their top preference.
+Problem 8:
+My similar problem is as follows:
+If there are two hockey teams, Team A and B where each has a set of players with specific ratings based on their performance in the season. All players can be assigned different positions besides the goalie. Each team’s objective is to devise a strategy via assignment of players to positions that allows them to maximize their chances of winning. Hypothetically in this situation, a match is won if the team’s player ratings at a particular position is higher than the rating of the opposing teams player at that position. Can we define a pair of strategies for each team if neither Team A or B can unilaterally change their strategy to win more matches? For any set of players and their ratings, determine if there always exists a strategy for each team, or provide an example of players and ratings where there is no stable pair of strategies.
+Solution:
+There is not a stable pair of strategies in this situation under all circumstances. For example Team A could have two players with ratings 5 and 10 at a position. If team B has players rated 7 and 13 for that position then the teams will both want to switch their matchups simultaneously. Team A will want to win the matchup vs the 7 rated player on team B using their 10 rating. While Team B will want to win both matchups.
+Reflection:
+This problem gave me another example of a stable matching problem. This problem was unique because the situation was not stable under the given circumstances.
+Problem 9:
+The World Cup is changing the playoff format after the group stage. They are using the Gale-Shapley matching algorithm to include the top 16 teams in a bracket. The matchups for the 16 teams will be determined by asking fans and players which matchups would be most interesting to watch based on rivalries and past drama. 8 teams are placed in Group A, which can only face the 8 teams in Group B in the first round.
+A.	Use a Gale-Shapley implementation in python so that there are 16 teams being matched up against one another based on given preferences.
+B.	Use a loop to shuffle the preference lists for each team 500 times. Calculate the percentage of stable playoff matches.
+C.	Randomly assume certain teams win and lose each round and eliminate the losers from the preference lists. Can the Gale-Shapley method be used in each round?
+D.	Now combine the lists so that any team can be matched against any conference. Can the Gale Shipley still create stable matches?
+E.	Double the size of the lists in problem A sever times, and measure the amount of time it takes to create stable matches. How fast does the execution time grow in relation to the size of the lists?
+Solution:
+A.	Code Provided
+B.	I looped shuffled each teams preference list 500 times while testing my algorithm. In all 500 instances, my code was able to generate stable playoff matches for the teams.
+C.	The code is able to work in additional rounds for the tournament. The main requirement for the code to work in this fashion is for their to be the same amount of team in each group. For example, if Group A has 64 teams, Group B also requires 64 teams.
+D.	The Gale Shipley method would not be able to create stable matches if any team could face teams in their own group. The Gale Shipley method requires two different groups with preferences in order for it to operate.
+E.	When I ran my algorithm with the 16 teams in each group as stated above. It ran in 0.003 seconds. If I were to increase that to 64 teams in each group, it would run in 0.016 seconds. Running with 256 teams runs in 0.263 second. It can be seen that the algorithm takes exponentially longer as the number of teams on each side of the bracket is increased.
+Source Code: 
+# World Cup Gale-Shapley Example. 16 teams in Group A and B - Trevor Ryan
+
+import random
+import time
+
+# Start timer
+t0 = time.time()
+
+def gale_shapley_world_cup_example(GroupA_prefs, GroupB_prefs):
+    n = len(GroupA_prefs)
+    A_matches = [-1] * n
+    B_matched = [False] * n
+
+    while A_matches.count(-1) > 0:
+        for GroupA in range(n):
+            if A_matches[GroupA] == -1:
+                for GroupB in GroupA_prefs[GroupA]:
+                    if not B_matched[GroupB]:
+                        A_matches[GroupA] = GroupB
+                        B_matched[GroupB] = True
+                        break
+                    else:
+                        current_partner = A_matches.index(GroupB)
+                        if GroupB_prefs[GroupB].index(GroupA) < GroupB_prefs[GroupB].index(current_partner):
+                            A_matches[GroupA] = GroupB
+                            B_matched[GroupB] = False
+                            A_matches[current_partner] = -1
+
+    stable_matches = [(GroupA, GroupB) for GroupA, GroupB in enumerate(A_matches)]
+    return stable_matches
+
+# Initialize preferences
+GroupA_prefs = []
+GroupB_prefs = []
+
+# Create preferences for teams in Group A
+for i in range(16):
+    pref1 = list(range(16))
+    random.shuffle(pref1)
+    GroupA_prefs.append(pref1)
+
+# Create preferences for teams in Group B
+for i in range(16):
+    pref2 = list(range(16))
+    random.shuffle(pref2)
+    GroupB_prefs.append(pref2)
+
+# Call the Gale Shapley code using the randomized preferences
+stable_matches = gale_shapley_world_cup_example(GroupA_prefs, GroupB_prefs)
+
+for GroupA, GroupB in stable_matches:
+    print(f"Team {GroupA} from Group A is matched with Team {GroupB} from Group B")
+
+t1 = time.time()
+total = t1-t0
+
+# Print the total time that it took to run the algorithm
+print(f" Total time to run code is {total} seconds")
+
+Reflection: This problem gave me the opportunity to use python with a Gale Shipley problem. I had not downloaded python on my new laptop yet, so this was a great chance to get my laptop set up, and to practice my skills with the language. 
